@@ -29,9 +29,9 @@ A social-media app developed full-stack with the MongoDB/Mongoose, Express, Reac
  - Post, update and manage stories with image uploads.
  - More features pending...
 
- ## :white_check_mark: Requirements
+ ## Requirements
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com), [MongoDB](https://docs.mongodb.com/), and [Node](https://nodejs.org/en/) installed.
+Before starting, you need to have [Git](https://git-scm.com), [MongoDB](https://docs.mongodb.com/), and [Node](https://nodejs.org/en/) installed.
 
 ## Starting
 
