@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate }  from "react-router-dom";
-import { AppBar, Avatar, Toolbar, Typography, Button } from "@material-ui/core";
-import memoriesLogo from '../../images/sail2.png'
+import { Avatar, Typography, CssBaseline } from "@material-ui/core";
+import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import memoriesText from '../../images/ucircleorg.png'
 import decode from 'jwt-decode'
 
@@ -32,24 +32,32 @@ const Navbar = () => {
     }, [location])
 
     return(
-    <AppBar className={classes.appBar} position='static' color='inherit'>
-        <Link to='/' className={classes.brandContainer}>
-        {/* <Typography component={Link} to= "/" className={classes.heading} variant='h2' align='center'>Memories</Typography> */}
-        <img component={Link} to= "/" src={memoriesText} alt='icon' height='60px'/>
-        {/* <img className={classes.image} src={memoriesLogo} alt='icon' height='40px'/> */}
-        </Link>
-        <Toolbar className={classes.toolbar}>
-            {user ? (
-                <div className={classes.profile}>
-                    <Avatar className={classes.purple} alt={user.result.name} src={user.result.image}>
-                        {user.result.name.charAt(0)}</Avatar>
-                    <Typography className={classes.userName} variant='h6'>Welcome back, {user.result.name}</Typography>
-                    <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Log Out</Button>
-                </div>) : (
-                     <Button component={Link} to="/auth" variant="contained" color="primary">Log in</Button>
-                ) }
-        </Toolbar>
-    </AppBar>
+        <React.Fragment>
+            <CssBaseline/>
+            <AppBar className={classes.appBar} position='relative' color='inherit'>
+                <Toolbar variant="dense" >
+                <Box sx={{flexGrow: 1}}>
+                <Link to='/' className={classes.brandContainer}>
+                <img className={classes.image} component={Link} to= "/" src={memoriesText} alt='icon' height='60px'/>
+               
+                </Link>
+                </Box>
+                <Toolbar className={classes.toolbar}>
+                    {user ? (
+                        <div>
+                            <Box sx={{display: {xs: "none", sm: "inline"}}} >
+                            <Avatar className={classes.purple} alt={user.result.name} src={user.result.image}>
+                                {user?.result?.name?.charAt(0)}</Avatar>
+                            <Typography className={classes.userName} variant='h6'>欢迎回来, {user.result.name}</Typography>
+                            </Box>
+                            <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>退出登录</Button>
+                        </div>) : (
+                            <Button component={Link} to="/auth" variant="contained" color="primary">登录</Button>
+                        ) }
+                </Toolbar>
+                </Toolbar>
+            </AppBar>
+        </React.Fragment>
     )
 }
 

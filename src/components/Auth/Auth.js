@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from "@material-ui/core";
+import { Avatar, Button, Paper, Grid, Typography, Container, TextField } from "@mui/material";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 import useStyles from './styles'
 import Input from "./Input";
@@ -31,7 +31,6 @@ const Auth = () => {
         } else {
             dispatch(signin(formData, navigate));
         }
-        console.log(formData);
     };
 
     const handleChange = (event) => {
@@ -69,37 +68,43 @@ const Auth = () => {
                 <Avatar className={classes.avatar}>
                     <LockOutlinedIcon/>
                 </Avatar>
-                <Typography variant="h5">{isSignup ? 'Sign Up' : 'Sign in'}</Typography>
+                <Typography variant="h5">{isSignup ? '注册' : '登录'}</Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         {   isSignup && (
                                 <>
-                                <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus half></Input>
-                                <Input name="lastname" label="Last Name" handleChange={handleChange} half></Input>
+                                <Input name="firstname" label="名" handleChange={handleChange} autoFocus half></Input>
+                                <Input name="lastname" label="姓" handleChange={handleChange} half></Input>
                                 </>
                             )}
-                            <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
-                            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
-                            { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
+                            <Input name="email" label="邮箱" handleChange={handleChange} type="email"/>
+                            <Input name="password" label="密码" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+                            { isSignup && <Input name="confirmPassword" label="确认密码" handleChange={handleChange} type="password" />}
                     </Grid>
-                    <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                        { isSignup ? 'Sign Up' : 'Sign In'}
-                    </Button>
-                    <GoogleLogin
-                                clientId="68914266286-q4m77ulp6gj38i7o7e2sbidpr0hqieeg.apps.googleusercontent.com"
-                                render={(renderProps) => (
-                                    <Button className={classes.googleButton} color='primary' fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
-                                        Google Sign In
-                                    </Button>
-                                )}
-                                onSuccess={googleSuccess}
-                                onFailure={googleFailure}
-                                cookiePolicy="single_host_origin"
-                            />
-                    <Grid container justifyContent="flex-end">
+                        <Grid container mt={1} spacing={1} direction="row" justifyContent="center" alignItems="center">
+                        <Grid item xs={12} sm={12}>
+                            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                                { isSignup ? '注册' : '登录'}
+                            </Button>
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                            <GoogleLogin
+                                        clientId="68914266286-q4m77ulp6gj38i7o7e2sbidpr0hqieeg.apps.googleusercontent.com"
+                                        render={(renderProps) => (
+                                            <Button className={classes.googleButton} color='primary' fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
+                                                使用Google账号登录
+                                            </Button>
+                                        )}
+                                        onSuccess={googleSuccess}
+                                        onFailure={googleFailure}
+                                        cookiePolicy="single_host_origin"
+                                    />
+                            </Grid>
+                            </Grid>
+                    <Grid container mt={2} justifyContent="flex-end">
                         <Grid item>
                             <Button onClick={switchMode} color="primary" size="small">
-                                { isSignup ? (<span> Already have an account? <b><i>Sign In</i></b> </span>) : (<span> "Don't have an account? <b><i>Sign Up</i></b></span>)}
+                                { isSignup ? (<span> 已有账号? <b><i>登录</i></b> </span>) : (<span> 没有账号？ <b><i>注册</i></b></span>)}
                             </Button>
                         </Grid>
                     </Grid>

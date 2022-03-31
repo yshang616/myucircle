@@ -2,10 +2,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   media: {
-    height: 0,
-    paddingTop: '56.25%',
+    height: '300px',
+    width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
+    // maxWidth: 500
+    // resize: {width: "auto", height: 100}
   },
   border: {
     border: 'solid',
@@ -38,8 +40,8 @@ export default makeStyles({
   },
   details: {
     display: 'flex',
-    justifyContent: 'space-between',
-    margin: '20px',
+    justifyContent: 'flex-start',
+    mt: '20px',
   },
   title: {
     padding: '0 16px',

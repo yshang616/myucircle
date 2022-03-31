@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from "@material-ui/core";
+import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from "@mui/material";
 import { useDispatch } from 'react-redux';
 import useStyles from "./styles.js"
 import { useNavigate, useLocation } from "react-router-dom";
@@ -65,7 +65,7 @@ const Home = () => {
                 <TextField 
                   name='search' 
                   variant="outlined" 
-                  label="Search"
+                  label="查找标题 / 内容"
                   onKeyDown={handleKeyDown}
                   fullWidth
                   value={search}
@@ -75,10 +75,10 @@ const Home = () => {
                     value={tags}
                     onAdd={handleAdd}
                     onDelete={handleDelete}
-                    label="Search Tags"
+                    label="查找标签"
                     variant="outlined"
                   />
-                  <Button onClick={searchPost} className={classes.searchButton} variant="contained" color="primary">Search</Button>
+                  <Button onClick={searchPost} className={classes.searchButton} variant="contained" color="primary">查找</Button>
               </AppBar>
               <Form currentId = {currentId} setCurrentId = {setCurrentId}/>
               {(!searchQuery && !tags.length) && (

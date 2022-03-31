@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import { TextField, Button, Typography, Paper } from "@mui/material";
 import FileBase from 'react-file-base64';
 import useStyles from './styles';
 import { useDispatch } from "react-redux";
@@ -31,9 +31,9 @@ const Form = ({currentId, setCurrentId}) => {
         event.preventDefault();
 
         if(currentId){
-            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name}));
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name, creator: user?.result?._id}));
         } else {
-            dispatch(createPost({ ...postData, name: user?.result?.name}, navigate));
+            dispatch(createPost({ ...postData, name: user?.result?.name, creator: user?.result?._id}, navigate));
         }
         clear();
     }
@@ -41,8 +41,9 @@ const Form = ({currentId, setCurrentId}) => {
     if(!user?.result?.name) {
         return (
             <Paper className={classes.paper}>
-                <Typography variant="h6" align="center">
-                    Please sign in to create your own memories and like other's memories.
+                <Typography variant="body1" align="center">
+                    请登录以点赞或发布帖子
+                    {/* Please log in to post your own stories or like other's stories. */}
                 </Typography>
             </Paper>
         )
@@ -52,7 +53,7 @@ const Form = ({currentId, setCurrentId}) => {
         <Paper className={classes.paper} elevation={6}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant='h6'>
-                    { currentId ? 'Editing' : 'Creating' } a Memory
+                    { currentId ? '编辑' : '创建' } 帖子
                 </Typography>
                 {/* <TextField name="creator" variant="outlined" label="creator" fullWidth value={postData.creator} onChange={(event) => setPostData({ ...postData, creator: event.target.value })}/> */}
                 <TextField name="title" variant="outlined" label="title" fullWidth value={postData.title} onChange={(event) => setPostData({ ...postData, title: event.target.value })}/>
@@ -65,8 +66,8 @@ const Form = ({currentId, setCurrentId}) => {
                         onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
                         />
                 </div>
-                <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>发布</Button>
+                <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>清除</Button>
             </form>
         </Paper>
     );

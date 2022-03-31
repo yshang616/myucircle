@@ -1,6 +1,5 @@
 import React from 'react';
 import {Container} from '@material-ui/core';
-import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import PostDetails from './components/PostDetails/PostDetails';
@@ -13,8 +12,8 @@ const App = () => {
 
   return(
     <BrowserRouter>
+    <Navbar></Navbar>
       <Container maxwidth="xl">
-        <Navbar></Navbar>
           <Routes>
             <Route  path="/" exact element={<Navigate to="/posts"/>}></Route>
             <Route path="/posts" exact element={<Home/>}></Route>
