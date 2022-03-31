@@ -1,4 +1,4 @@
-## UCircle: Post Your Stories in your circle!
+# UCircle: Post Your Stories in your circle!
 ## Demo Deployed at:
 Link: https://myucircle.netlify.app
 
