@@ -4,7 +4,7 @@ Link: https://myucircle.netlify.app
 
 A social-media app developed full-stack with the MongoDB/Mongoose, Express, React, and Node.js (MERN) Toolkit.
 
-## Architecture
+## Structure
 ```txt
 ├── client
 │   └── src
